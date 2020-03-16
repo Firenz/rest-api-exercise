@@ -16,9 +16,7 @@
   ],
   "author": "Jaime Salas",
   "license": "MIT",
-  "dependencies": {
-    "axios": "^0.18.0"
-  },
+  "dependencies": {},
   "devDependencies": {
     "parcel": "^1.11.0"
   }

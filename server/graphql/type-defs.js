@@ -1,6 +1,6 @@
 const { gql } = require("apollo-server-express");
 
-const typeDefs = gql`
+module.exports = gql`
   type Car {
     car_id: Float!
     name: String!
@@ -10,7 +10,17 @@ const typeDefs = gql`
 
   type Query {
     cars: [Car!]!
+    car(id: Float!): Car!
+  }
+
+  input CarEdit {
+    car_id: Float!
+    name: String!
+    brand: String!
+    year_release: String!
+  }
+
+  type Mutation {
+    saveCar(carEdit: CarEdit!): Boolean
   }
 `;
-
-module.exports.typeDefs = typeDefs;

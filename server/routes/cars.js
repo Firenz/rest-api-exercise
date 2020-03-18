@@ -88,5 +88,5 @@ router
     }
   });
 
-module.exports.router = router;
+module.exports = router;
 module.exports.getCarData = getCarData;

@@ -14,20 +14,6 @@ const app = express();
 const typeDefs = require("./graphql/type-defs");
 const resolvers = require("./graphql/resolvers");
 
-// const typeDefs = gql`
-//   type Query {
-//     hello: String!
-//   }
-// `;
-
-// const resolvers = {
-//   Query: {
-//     hello: () => {
-//       return 'Working endpoint';
-//     },
-//   },
-// };
-
 const graphqlServer = new ApolloServer({
   typeDefs,
   resolvers
@@ -48,6 +34,10 @@ app.set("port", process.env.PORT || 3050);
 app.listen(app.get("port"));
 
 console.log(`Server running at http://localhost:${app.get("port")}`);
-console.log(`GraphQL server running at http://localhost:${app.get("port")}${graphqlServer.graphqlPath}`);
+console.log(
+  `GraphQL server running at http://localhost:${app.get("port")}${
+    graphqlServer.graphqlPath
+  }`
+);
 
 module.exports = app;

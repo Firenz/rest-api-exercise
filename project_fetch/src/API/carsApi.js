@@ -40,8 +40,10 @@ export async function addCar(car) {
 
   const response = await fetch(url, {
     method: 'POST',
-    headers : new Headers(),
-    body: car_json
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(car_json)
   });
   const cars = await response.json();
 

@@ -5,9 +5,9 @@ export const getAllCars = () => {
   return new Promise((resolve, reject) => {
     const url = `${baseUrl}/cars`;
     const client = new XMLHttpRequest();
-    client.responseType = "json";
+    client.responseType = "text";
 
-    client.onload = event => resolve(event.target.responseText);
+    client.onload = event => resolve(JSON.parse(event.target.responseText));
     client.onerror = event =>
       reject(`${event.target.status}:${event.target.statusText}`);
     client.open("get", url);
@@ -19,9 +19,9 @@ export const getCarById = id => {
   return new Promise((resolve, reject) => {
     const url = `${baseUrl}/cars/${id}`;
     const client = new XMLHttpRequest();
-    client.responseType = "json";
+    client.responseType = "text";
 
-    client.onload = event => resolve(event.target.responseText);
+    client.onload = event => resolve(JSON.parse(event.target.responseText));
     client.onerror = event =>
       reject(`${event.target.status}:${event.target.statusText}`);
     client.open("get", url);
@@ -40,10 +40,10 @@ export const addCar = car => {
     };
 
     const client = new XMLHttpRequest();
-    client.responseType = "json";
+    client.responseType = "text";
     client.setRequestHeader('Content-type', 'application/json; charset=utf-8');
 
-    client.onload = event => resolve(event.target.responseText);
+    client.onload = event => resolve(JSON.parse(event.target.responseText));
     client.onerror = event =>
       reject(`${event.target.status}:${event.target.statusText}`);
 

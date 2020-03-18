@@ -41,13 +41,13 @@ export const addCar = car => {
 
     const client = new XMLHttpRequest();
     client.responseType = "text";
-    client.setRequestHeader('Content-type', 'application/json; charset=utf-8');
-
-    client.onload = event => resolve(JSON.parse(event.target.responseText));
+    
+    client.onload = event => resolve("ok");
     client.onerror = event =>
-      reject(`${event.target.status}:${event.target.statusText}`);
-
+    reject(`${event.target.status}:${event.target.statusText}`);
+    
     client.open("post", url);
-    client.send(car_json);
+    client.setRequestHeader('Content-type', 'application/json; charset=utf-8');
+    client.send(JSON.stringify(car_json));
   });
 };

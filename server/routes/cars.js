@@ -90,3 +90,4 @@ router
 
 module.exports = router;
 module.exports.getCarData = getCarData;
+module.exports.saveCarData = saveCarData;

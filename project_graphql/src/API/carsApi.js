@@ -5,7 +5,7 @@ const graphqlBaseUrl = `http://localhost:${defaultPort}/graphql`;
 
 const graphqlClient = new GraphQLClient(graphqlBaseUrl);
 
-const handleError = err => console.error(`${err.status}:${err.statusText}`);
+const handleError = err => console.error(err);
 
 export const getAllCars = () => {
   const query = `
@@ -26,7 +26,7 @@ export const getAllCars = () => {
 };
 
 export const getCarById = id => {
-  const query=`
+  const query = `
   query {
     car(id: ${id}) {
       car_id
@@ -44,22 +44,16 @@ export const getCarById = id => {
 };
 
 export const addCar = car => {
-  const car_json = {
-    card_id: car.car_id,
-    name: car.name,
-    brand: car.brand,
-    year_release: car.year_release
-  };
-
-  const query=`
-  mutation($carEdit: CarEdit!){
-    saveCar(carEdit: $carEdit)
+  console.log(car);
+  const query = `
+  mutation($newCar: CarEdit!){
+    saveCar(carEdit: $newCar)
   }
   `;
 
   return graphqlClient
     .request(query, {
-      carEdit: car_json
+      newCar: car
     })
     .then(response => response.saveCar)
     .catch(handleError);

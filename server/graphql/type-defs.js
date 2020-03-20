@@ -14,7 +14,6 @@ module.exports = gql`
   }
 
   input CarEdit {
-    car_id: Float!
     name: String!
     brand: String!
     year_release: String!

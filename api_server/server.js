@@ -2,15 +2,29 @@ const express = require("express");
 (path = require("path")),
   (cookieParser = require("cookie-parser")),
   (bodyParser = require("body-parser")),
-  (cors = require("cors"));
+  (cors = require("cors")),
+  (expressjwt = require("express-jwt"));
 
 const { ApolloServer } = require("apollo-server-express");
 
-const users = require("./routes/users");
 const cars = require("./routes/cars");
 
 const app = express();
 
+// security setup
+app.use(cors());
+const jwtCheck = expressjwt({
+  secret: "mysupersecret"
+});
+
+// rest api setup
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cookieParser());
+
+app.use("/api/cars", jwtCheck, cars);
+
+// graphql setup
 const typeDefs = require("./graphql/type-defs");
 const resolvers = require("./graphql/resolvers");
 
@@ -18,15 +32,6 @@ const graphqlServer = new ApolloServer({
   typeDefs,
   resolvers
 });
-
-// setup
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cookieParser());
-app.use(cors());
-
-app.use("/api/users", users);
-app.use("/api/cars", cars);
 
 graphqlServer.applyMiddleware({ app });
 

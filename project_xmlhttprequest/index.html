@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Vanilla JavaScript Security</title>
+    <title>Document</title>
     <link
       rel="stylesheet"
       href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
@@ -13,18 +13,52 @@
     />
   </head>
 
-  <body class="container p-5">
-    <form>
+  <body>
+    <div class="container">
+      <h2>Cars</h2>
+      <button
+        style="margin-bottom:20px;"
+        class="btn btn-primary float-right"
+        id="loadcars"
+      >
+        Load cars
+      </button>
+
+      <table id="cars-table" class="table">
+        <thead>
+          <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Brand</th>
+            <th>Year Release</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+      <br />
+      <h3>Edit car by Id</h3>
       <div class="form-group">
-        <label for="username">Username</label>
-        <input type="text" class="form-control" id="username" />
+        <label for="carid">Car Id</label>
+        <input type="text" class="form-control" id="carid" />
       </div>
-      <div class="form-group">
-        <label for="password">Password</label>
-        <input type="password" class="form-control" id="password" />
-      </div>
-      <button class="btn btn-primary" id="login" type="submit">Login</button>
-    </form>
-    <script src="./src/login.js"></script>
+      <button class="btn btn-primary" id="loadcar">Load car</button>
+      <h3>Edit car</h3>
+      <form>
+        <div class="form-group">
+          <label for="name">name</label>
+          <input type="text" class="form-control" id="name" />
+        </div>
+        <div class="form-group">
+          <label for="brand">brand</label>
+          <input type="text" class="form-control" id="brand" />
+        </div>
+        <div class="form-group">
+          <label for="year">Year</label>
+          <input type="text" class="form-control" id="year" />
+        </div>
+        <button class="btn btn-primary" id="add" type="submit">add</button>
+      </form>
+    </div>
+    <script src="./src/app.js"></script>
   </body>
 </html>

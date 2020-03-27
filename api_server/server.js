@@ -2,8 +2,7 @@ const express = require("express");
 (path = require("path")),
   (cookieParser = require("cookie-parser")),
   (bodyParser = require("body-parser")),
-  (cors = require("cors")),
-  (expressjwt = require("express-jwt"));
+  (cors = require("cors"));
 
 const { ApolloServer } = require("apollo-server-express");
 
@@ -13,16 +12,13 @@ const app = express();
 
 // security setup
 app.use(cors());
-const jwtCheck = expressjwt({
-  secret: "mysupersecret"
-});
 
 // rest api setup
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-app.use("/api/cars", jwtCheck, cars);
+app.use("/api/cars", cars);
 
 // graphql setup
 const typeDefs = require("./graphql/type-defs");

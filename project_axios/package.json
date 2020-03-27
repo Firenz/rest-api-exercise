@@ -5,6 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "parcel index.html",
+    "start:api-server": "cd ../api_server && npm run start",
+    "start:dev":"npm run start:api-server && npm run start",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
@@ -14,7 +16,7 @@
     "promises",
     "axios"
   ],
-  "author": "Jaime Salas",
+  "author": "Alicia Guardeño <alicia.guardenoalbertos@gmail.com>",
   "license": "MIT",
   "dependencies": {
     "axios": "^0.18.1"

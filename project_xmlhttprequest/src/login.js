@@ -1,5 +1,6 @@
 import { login } from "./API/login.service";
-import { httpClientService } from "./API/http-client.service";
+import * as carsApi from "./API/carsApi";
+// import { httpClientService } from "./API/http-client.service";
 
 const readCredentials = () => {
   const username = document.getElementById("username").value;
@@ -18,14 +19,18 @@ document.addEventListener("DOMContentLoaded", () => {
     login(credentials)
       .then(data => {
         const { access_token } = data;
-        const headers = {
-          Authorization: `Bearer ${access_token}`
-        };
-        httpClientService.setHeaders(headers);
+        
+        if (access_token) {
+          console.log('login succesfull!!');
 
-        if(access_token){
-          // window.location.replace("http://localhost:1234/cars.html");
-          window.location.href = 'http://localhost:1234/cars.html';
+          const headers = {
+            Authorization: `Bearer ${access_token}`
+          };
+          // httpClientService.setHeaders(headers);
+          carsApi.setHeaders(headers);
+          document.getElementById("login-form").style.display = "none";
+          document.getElementById("cars").style.display = "block";
+          document.getElementById("cars").focus();
         }
       })
       .catch(err => console.log(err));

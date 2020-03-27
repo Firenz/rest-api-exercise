@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "start": "parcel index.html",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start:dev":"npm run start:api-server && npm run start:auth-server && npm run start",
+    "start:api-server": "cd ../api_server && npm run start",
+    "start:auth-server": "cd ../auth_server && npm run start"
   },
   "keywords": [
     "REST",
@@ -14,7 +16,7 @@
     "promises",
     "axios"
   ],
-  "author": "Jaime Salas",
+  "author": "Alicia Guardeño Albertos <alicia.guardenoalbertos@gmail.com>",
   "license": "MIT",
   "dependencies": {},
   "devDependencies": {

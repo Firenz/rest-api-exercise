@@ -1,16 +1,24 @@
 const defaultPort = 3050;
 const baseUrl = `http://localhost:${defaultPort}/api`;
 
+let headers;
+let authorization;
+export const setHeaders = value => {
+  headers = value;
+  authorization = value["Authorization"];
+};
+
 export const getAllCars = () => {
   return new Promise((resolve, reject) => {
     const url = `${baseUrl}/cars`;
     const client = new XMLHttpRequest();
     client.responseType = "text";
 
-    client.onload = event => resolve(JSON.parse(event.target.responseText));
+    client.onload = event => resolve( () =>JSON.parse(event.target.responseText));
     client.onerror = event =>
       reject(`${event.target.status}:${event.target.statusText}`);
     client.open("get", url);
+    client.setRequestHeader("Authorization", authorization);
     client.send();
   });
 };
@@ -25,6 +33,7 @@ export const getCarById = id => {
     client.onerror = event =>
       reject(`${event.target.status}:${event.target.statusText}`);
     client.open("get", url);
+    client.setRequestHeader("Authorization", authorization);
     client.send();
   });
 };
@@ -41,13 +50,14 @@ export const addCar = car => {
 
     const client = new XMLHttpRequest();
     client.responseType = "text";
-    
+
     client.onload = event => resolve("ok");
     client.onerror = event =>
-    reject(`${event.target.status}:${event.target.statusText}`);
-    
+      reject(`${event.target.status}:${event.target.statusText}`);
+
     client.open("post", url);
-    client.setRequestHeader('Content-type', 'application/json; charset=utf-8');
+    client.setRequestHeader("Authorization", authorization);
+    client.setRequestHeader("Content-type", "application/json; charset=utf-8");
     client.send(JSON.stringify(car_json));
   });
 };
